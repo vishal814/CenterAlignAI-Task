@@ -37,15 +37,15 @@ def call_gemini_json(prompt: str, schema_cls: type) -> Optional[Any]:
             contents=prompt,
             config={
                 "system_instruction": system_instruction,
-                "response_mime_type": "application/json"
+                "response_mime_type": "application/json",
+                "response_schema": schema_cls
             }
         )
         text = response.text.strip()
         # Clean markdown wrappers if present
         text = re.sub(r"^```(?:json)?\s*", "", text, flags=re.MULTILINE)
         text = re.sub(r"```$", "", text, flags=re.MULTILINE).strip()
-        data = json.loads(text)
-        return schema_cls(**data)
+        return schema_cls.model_validate_json(text)
     except Exception as e:
         print(f"[Gemini Structured LLM Warning]: {str(e)}")
         return None
