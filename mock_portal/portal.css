@@ -1,0 +1,302 @@
+:root {
+    --bg-primary: #0f172a;
+    --bg-surface: #1e293b;
+    --bg-card: #182234;
+    --border-color: #334155;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.portal-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.portal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.portal-badge {
+    font-size: 0.75rem;
+    background: #1e3a8a;
+    color: #93c5fd;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-bottom: 0.4rem;
+}
+
+.portal-header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.header-status {
+    font-size: 0.85rem;
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.search-section {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.search-section label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.search-box {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.search-box input {
+    flex: 1;
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.search-box button, .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-box button:hover, .btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background: #334155;
+    color: var(--text-primary);
+}
+
+.ticket-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.75rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.ticket-id-tag {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: #60a5fa;
+    background: #172554;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.card-header h2 {
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+}
+
+.badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+}
+
+.badge-open {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-resolved {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.grid-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-item {
+    background: rgba(15, 23, 42, 0.6);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid rgba(51, 65, 85, 0.5);
+}
+
+.detail-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+}
+
+.detail-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.notes-section {
+    margin-bottom: 1.5rem;
+}
+
+.notes-section label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.notes-section textarea {
+    width: 100%;
+    background: #0f172a;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-primary);
+    padding: 0.75rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+
+.notes-section textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.actions-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.result-msg {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.all-tickets-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.tickets-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-surface);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.tickets-table th, .tickets-table td {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.tickets-table th {
+    background: #1e293b;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tickets-table td {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.tickets-table tr:hover td {
+    background: rgba(51, 65, 85, 0.3);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.spinner {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--accent);
+    font-size: 0.9rem;
+}

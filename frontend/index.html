@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CentrAlign AI Operator - Enterprise Autonomous Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/dashboard-static/style.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Top Navigation Bar -->
+        <header class="navbar">
+            <div class="nav-brand">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                </div>
+                <div>
+                    <div class="brand-title">CentrAlign AI Operator</div>
+                    <div class="brand-subtitle">Autonomous Enterprise AI Employee &bull; Payment Support Workflow</div>
+                </div>
+            </div>
+            <div class="nav-controls">
+                <a href="/portal" target="_blank" class="nav-link" id="nav-portal-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    Open Support Portal
+                </a>
+                <button class="btn-outline-danger" id="btn-reset-db" onclick="resetDatabase()">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                    Reset Mock DB
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="dashboard-body">
+            <!-- Left Panel: Command Input & Scenarios -->
+            <aside class="control-panel">
+                <section class="card glass-card">
+                    <div class="card-header">
+                        <h3>Operator Goal & Dispatch</h3>
+                        <span class="pulse-indicator online">System Ready</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goal-input">High-Level Company Request</label>
+                        <textarea id="goal-input" rows="3" placeholder="e.g. Resolve Rahul Sharma's payment issue.">Resolve Rahul Sharma's payment issue.</textarea>
+                    </div>
+
+                    <div class="actions-group">
+                        <button id="btn-start-task" class="btn-primary-glow" onclick="startTask()">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                            Dispatch Autonomous Agent
+                        </button>
+                    </div>
+
+                    <!-- Preset Scenarios -->
+                    <div class="preset-section">
+                        <div class="preset-title">Test Scenarios (CentrAlign Evaluation)</div>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" onclick="setGoal('Resolve Rahul Sharma\'s payment issue.')">
+                                <span class="scenario-tag auto">Scenario 1</span>
+                                <strong>Rahul Sharma</strong>: Auto-Refund &le; ₹5,000
+                            </button>
+                            <button class="preset-btn" onclick="setGoal('Resolve Priya Patel\'s payment issue.')">
+                                <span class="scenario-tag retry">Scenario 2</span>
+                                <strong>Priya Patel</strong>: Transient Failure + Retry
+                            </button>
+                            <button class="preset-btn" onclick="setGoal('Resolve Amit Kumar\'s payment issue.')">
+                                <span class="scenario-tag approval">Scenario 3</span>
+                                <strong>Amit Kumar</strong>: Human Approval Gate &gt; ₹5,000
+                            </button>
+                            <button class="preset-btn" onclick="setGoal('Resolve Neha Verma\'s payment issue.')">
+                                <span class="scenario-tag duplicate">Scenario 4</span>
+                                <strong>Neha Verma</strong>: Duplicate Refund Prevention
+                            </button>
+                            <button class="preset-btn" onclick="setGoal('Resolve Vikram Singh\'s payment issue.')">
+                                <span class="scenario-tag fail">Scenario 5</span>
+                                <strong>Vikram Singh</strong>: Failed Transaction Safeguard
+                            </button>
+                            <button class="preset-btn" onclick="setGoal('Resolve Unknown Client payment issue.')">
+                                <span class="scenario-tag neutral">Scenario 6</span>
+                                <strong>Unknown Customer</strong>: Safe Exit & Error Reporting
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Playwright Browser Automation Trigger -->
+                    <div class="playwright-box">
+                        <div class="pw-header">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                            <span>Live Browser Automation (Playwright)</span>
+                        </div>
+                        <p class="pw-desc">Executes a real Chromium instance to interact with the Support Portal DOM.</p>
+                        <div class="pw-inputs">
+                            <input type="text" id="pw-ticket-id" value="TICKET1024" placeholder="Ticket ID">
+                            <button class="btn-secondary-glow" onclick="runPlaywrightInspect()">Run Chromium Inspect</button>
+                        </div>
+                        <div id="pw-result" class="pw-result-view hidden"></div>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- Right Panel: Execution State, Dynamic Plan, Trace, Approvals, Evidence -->
+            <section class="execution-workspace">
+                <!-- Human Approval Gate Alert (Rendered conditionally) -->
+                <div id="approval-gate-banner" class="approval-card hidden">
+                    <div class="approval-icon">⚠️</div>
+                    <div class="approval-content">
+                        <h4>Human Approval Required</h4>
+                        <p id="approval-description">A high-impact action requires operational authorization before proceeding.</p>
+                        <div class="approval-meta" id="approval-meta-box">
+                            <!-- Injected by JS -->
+                        </div>
+                        <div class="approval-actions">
+                            <button class="btn-approve" onclick="submitApprovalDecision(true)">
+                                ✓ Approve & Continue Execution
+                            </button>
+                            <button class="btn-reject" onclick="submitApprovalDecision(false)">
+                                ✗ Reject & Abort Action
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status Banner -->
+                <div class="status-summary-bar">
+                    <div class="status-item">
+                        <span class="status-label">AI ENGINE</span>
+                        <span id="ai-engine-badge" class="agent-badge idle">CHECKING...</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">AGENT STATUS</span>
+                        <span id="agent-status-badge" class="agent-badge idle">IDLE</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">CURRENT TASK ID</span>
+                        <code id="current-task-id" class="code-id">NONE</code>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">INDEPENDENT VERIFICATION</span>
+                        <span id="verification-status-badge" class="agent-badge unverified">UNVERIFIED</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">RETRY COUNT</span>
+                        <span id="retry-counter" class="counter-badge">0 / 1</span>
+                    </div>
+                </div>
+
+                <!-- Dynamic Plan & Trace Columns -->
+                <div class="state-columns">
+                    <!-- Column 1: Dynamic Execution Plan -->
+                    <div class="card glass-card">
+                        <div class="card-header">
+                            <h3>Autonomous Plan</h3>
+                            <span class="sub-pill">Dynamic DAG</span>
+                        </div>
+                        <div id="plan-container" class="plan-list">
+                            <div class="empty-state">No active task. Dispatch a goal to generate an autonomous plan.</div>
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Live Execution Trace -->
+                    <div class="card glass-card trace-card">
+                        <div class="card-header">
+                            <h3>Execution Trace & Tool Results</h3>
+                            <span class="sub-pill" id="trace-step-count">0 Steps</span>
+                        </div>
+                        <div id="trace-container" class="trace-feed">
+                            <div class="empty-state">Execution trace will stream here step-by-step.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evidence & Executive Summary Section -->
+                <div class="card glass-card outcome-card">
+                    <div class="card-header">
+                        <h3>Final Verified Evidence & Executive Summary</h3>
+                        <span class="sub-pill" id="evidence-status-pill">Awaiting Outcome</span>
+                    </div>
+                    
+                    <div class="outcome-grid">
+                        <div class="summary-box">
+                            <span class="box-title">Executive Summary</span>
+                            <div id="executive-summary-text" class="summary-content">
+                                Awaiting task dispatch. The agent will formulate a verified natural language resolution summary upon task completion.
+                            </div>
+                        </div>
+
+                        <div class="evidence-box">
+                            <span class="box-title">Structured Cryptographic / Database Evidence</span>
+                            <pre id="evidence-json-viewer" class="json-viewer">{}</pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="/dashboard-static/app.js"></script>
+</body>
+</html>

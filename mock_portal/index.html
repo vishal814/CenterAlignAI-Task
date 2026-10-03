@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CentrAlign Support Portal</title>
+    <link rel="stylesheet" href="/portal-static/portal.css">
+</head>
+<body>
+    <div class="portal-container">
+        <header class="portal-header">
+            <div class="brand">
+                <span class="portal-badge">INTERNAL ENTERPRISE</span>
+                <h1>CentrAlign Support Portal</h1>
+            </div>
+            <div class="header-status">
+                <span class="status-indicator">●</span> Portal Online
+            </div>
+        </header>
+
+        <main class="portal-main">
+            <!-- Search Bar -->
+            <section class="search-section">
+                <label for="ticket-search-input">Search Tickets & Customer Inquiries</label>
+                <div class="search-box">
+                    <input type="text" id="ticket-search-input" placeholder="Enter Ticket ID (e.g. TICKET1024) or Customer Name..." value="TICKET1024">
+                    <button id="ticket-search-btn" onclick="searchTicket()">Search Ticket</button>
+                </div>
+            </section>
+
+            <!-- Loading Spinner -->
+            <div id="loading-spinner" class="spinner hidden">Searching enterprise ledger...</div>
+
+            <!-- Ticket Details Card -->
+            <section id="ticket-details-card" class="ticket-card hidden">
+                <div class="card-header">
+                    <div>
+                        <span id="card-ticket-id" class="ticket-id-tag">TICKET1024</span>
+                        <h2 id="card-ticket-issue">Payment charged but subscription inactive</h2>
+                    </div>
+                    <span id="ticket-status-badge" class="badge badge-open">OPEN</span>
+                </div>
+
+                <div class="grid-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Customer ID</span>
+                        <span id="detail-customer-id" class="detail-value">CUST001</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Customer Name</span>
+                        <span id="detail-customer-name" class="detail-value">Rahul Sharma</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Payment ID</span>
+                        <span id="detail-payment-id" class="detail-value">PAY9001</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Amount</span>
+                        <span id="detail-amount" class="detail-value">₹2499.00</span>
+                    </div>
+                </div>
+
+                <div class="notes-section">
+                    <label for="ticket-notes-textarea">Investigation & Audit Notes</label>
+                    <textarea id="ticket-notes-textarea" rows="4" placeholder="Add resolution notes..."></textarea>
+                </div>
+
+                <div class="actions-row">
+                    <button id="ticket-resolve-btn" class="btn-primary" onclick="markResolved()">Mark as Resolved</button>
+                    <button class="btn-secondary" onclick="loadAllTickets()">View All Tickets</button>
+                    <span id="ticket-result-message" class="result-msg"></span>
+                </div>
+            </section>
+
+            <!-- All Tickets Table -->
+            <section class="all-tickets-section">
+                <h3>Live Support Queue</h3>
+                <table class="tickets-table">
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Customer</th>
+                            <th>Issue</th>
+                            <th>Payment ID</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tickets-table-body">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="/portal-static/portal.js"></script>
+</body>
+</html>
