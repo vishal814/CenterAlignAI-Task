@@ -95,15 +95,15 @@ async function markResolved() {
             const badge = document.getElementById("ticket-status-badge");
             badge.textContent = "RESOLVED";
             badge.className = "badge badge-resolved";
-            resultMsg.textContent = "✓ Ticket successfully marked as RESOLVED";
+            resultMsg.textContent = "Ticket successfully marked as RESOLVED";
             resultMsg.style.color = "#10b981";
             loadAllTickets();
         } else {
-            resultMsg.textContent = "✗ Failed to update ticket status";
+            resultMsg.textContent = "Failed to update ticket status";
             resultMsg.style.color = "#ef4444";
         }
     } catch (err) {
-        resultMsg.textContent = `✗ Error: ${err.message}`;
+        resultMsg.textContent = `Error: ${err.message}`;
         resultMsg.style.color = "#ef4444";
     }
 }

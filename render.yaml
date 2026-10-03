@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: centralign-ai-operator
+    runtime: docker
+    plan: free
+    region: oregon
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.1-flash-lite
+      - key: AUTO_REFUND_THRESHOLD
+        value: "5000"
+      - key: PLAYWRIGHT_HEADLESS
+        value: "true"

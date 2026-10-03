@@ -68,6 +68,15 @@ body {
     gap: 0.4rem;
 }
 
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
 .search-section {
     background: var(--bg-surface);
     border: 1px solid var(--border-color);

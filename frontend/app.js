@@ -60,10 +60,10 @@ function renderTaskState(state) {
     const verifBadge = document.getElementById("verification-status-badge");
     const isVerified = state.verification && state.verification.verified;
     if (isVerified) {
-        verifBadge.textContent = "✓ VERIFIED (LEDGER + TICKET)";
+        verifBadge.textContent = "VERIFIED (LEDGER + TICKET)";
         verifBadge.className = "agent-badge verified";
     } else if (state.final_status === "failed_verification") {
-        verifBadge.textContent = "✗ VERIFICATION FAILED";
+        verifBadge.textContent = "VERIFICATION FAILED";
         verifBadge.className = "agent-badge failed";
     } else {
         verifBadge.textContent = "UNVERIFIED";
@@ -282,7 +282,7 @@ async function checkSystemStatus() {
             if (badge) {
                 if (data.hasKey) {
                     badge.className = "agent-badge live-gemini";
-                    badge.textContent = `Gemini (${data.model} • Live)`;
+                    badge.textContent = `Gemini (${data.model} | Live)`;
                 } else {
                     badge.className = "agent-badge fallback-engine";
                     badge.textContent = "Deterministic Fallback (Offline)";

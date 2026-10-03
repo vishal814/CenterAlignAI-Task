@@ -111,7 +111,13 @@
             <section class="execution-workspace">
                 <!-- Human Approval Gate Alert (Rendered conditionally) -->
                 <div id="approval-gate-banner" class="approval-card hidden">
-                    <div class="approval-icon">⚠️</div>
+                    <div class="approval-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </div>
                     <div class="approval-content">
                         <h4>Human Approval Required</h4>
                         <p id="approval-description">A high-impact action requires operational authorization before proceeding.</p>
@@ -120,10 +126,10 @@
                         </div>
                         <div class="approval-actions">
                             <button class="btn-approve" onclick="submitApprovalDecision(true)">
-                                ✓ Approve & Continue Execution
+                                Approve & Continue Execution
                             </button>
                             <button class="btn-reject" onclick="submitApprovalDecision(false)">
-                                ✗ Reject & Abort Action
+                                Reject & Abort Action
                             </button>
                         </div>
                     </div>
