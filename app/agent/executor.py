@@ -118,6 +118,8 @@ def gather_context_node(state: AgentState) -> AgentState:
     if cust_res.get("success") and cust_res.get("count", 0) > 0:
         customer = cust_res["customers"][0]
         state["customer"] = customer
+        state["observations"].append({"action": "search_customers", "customer_id": customer["id"], "name": customer["name"]})
+        state["executed_actions"].append({"action": "search_customers", "result": customer})
         append_trace(
             state, phase="gather_context", action="search_customers", status="success",
             decision_source=src,
@@ -145,6 +147,8 @@ def gather_context_node(state: AgentState) -> AgentState:
     if ticket_res.get("success") and ticket_res.get("count", 0) > 0:
         ticket = ticket_res["tickets"][0]
         state["ticket"] = ticket
+        state["observations"].append({"action": "search_tickets", "ticket_id": ticket["id"], "issue": ticket["issue"]})
+        state["executed_actions"].append({"action": "search_tickets", "result": ticket})
         append_trace(
             state, phase="gather_context", action="search_tickets", status="success",
             decision_source=src,
@@ -174,6 +178,8 @@ def gather_context_node(state: AgentState) -> AgentState:
         if pay_res.get("success") and pay_res.get("payment"):
             payment = pay_res["payment"]
             state["payment"] = payment
+            state["observations"].append({"action": "get_payment", "payment_id": payment["id"], "amount": payment["amount"], "status": payment["status"]})
+            state["executed_actions"].append({"action": "get_payment", "result": payment})
             append_trace(
                 state, phase="gather_context", action="get_payment", status="success",
                 decision_source=src,
@@ -207,6 +213,8 @@ def gather_context_node(state: AgentState) -> AgentState:
     )
     policy_res = tool_registry.execute("read_company_policy")
     state["policy"] = policy_res
+    state["observations"].append({"action": "read_company_policy", "autoRefundThreshold": policy_res.get("autoRefundThreshold")})
+    state["executed_actions"].append({"action": "read_company_policy", "result": policy_res})
     append_trace(
         state, phase="gather_context", action="read_company_policy", status="success",
         decision_source=src,
